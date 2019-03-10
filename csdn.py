@@ -2,13 +2,20 @@ from bs4 import BeautifulSoup
 import requests,sys
 import datetime
 
+class post(object):
+	"""docstring for post"""
+	def __init__(self, arg):
+		super(post, self).__init__()
+		self.arg = arg
+
+
 class downloader(object):
 
 
 	#total配置初始化
 	def __init__(total):
-		total.target='https://mp.weixin.qq.com/s/WtmuM7iLymCQ_P36BNenuA'
-		total.titles=[]
+		total.target='https://blog.csdn.net/'
+		total.posts=[]
 		total.links=[]
 		total.nums=0
 
