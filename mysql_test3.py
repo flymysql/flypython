@@ -8,7 +8,7 @@ import requests,sys
 import datetime
 import re
 
-db = pymysql.connect("localhost","root","www.l975","www_idealli_com",charset='utf8')
+db = pymysql.connect("localhost","root","your passwd","www_idealli_com",charset='utf8')
 tags = ['python','Android','Javascript','Java','Vue.js']
 cur_tag = ''
 urls = []

@@ -1,7 +1,7 @@
 #pytest
 #coding=utf-8
 #!/usr/bin/python
-# 掘金网站文章爬虫
+# IT网站文章爬虫
 # 作者：小鸡  flyphp@outlook.com
 
 import pymysql
@@ -14,7 +14,7 @@ import json
 import urllib
 
 # 连接数据库需要，IP，user，密码，库名
-db = pymysql.connect(host='localhost', user="root", passwd='www.l975', db='www_idealli_com')
+db = pymysql.connect(host='localhost', user="root", passwd='your passwd', db='www_idealli_com')
 ads = "<hr><p>阿里云云翼计划的学生机做出重大调整，所有实名认证<strong>只要在12岁到24岁之间的可以自动获取学生认证身份</strong>，和实名认证的在校大学生一样可以选择1核2G内存的云服务器或者轻量应用服务器，而且都是100%CPU性能！建个站什么的毫无压力。</p>"
 ads = ads + "<ol><li><p>注册领取阿里云服务器ECS幸运券(新用户优惠)：<a href=https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=rftv1tas target=_blank rel=noopener>点击领取</a></p></li><li><p>完成学生认证：<a href=https://account.console.aliyun.com/?spm=5176.7189909.0.0.SYBKvh#/student/home target=_blank rel=noopener>点击进入</a></p></li><li><p>学生专属优惠云服务器购买地址(购买之前领券，更优惠！)：<a href=https://promotion.aliyun.com/ntms/act/campus2018.html?userCode=rftv1tas target=_blank rel=noopener>点击进入</a><br><img src=https://image.idealli.com/blog/19010104.jpg alt=兰州小红鸡 ></p></li><li><p>确认好配置信息之后点'立即购买'，然后又出现确认界面，点击'去支付'<br><img src=https://image.idealli.com/blog/19010106.png alt=兰州小红鸡 ></p></li></ol>"
 ads2 = "<p><strong>小推荐：</strong>VULTR刚出的新用户优惠活动，注册并充值10美元送50美元，没有VULTR账户的朋友可以去注册一个，此优惠活动为新用户专属。开一台服务器可以用1年多！<br><strong>活动地址：</strong><a target=_blank href=https://www.vultr.com/?ref=7772625-4F>点击注册领取</a></p><hr>"

@@ -1,7 +1,7 @@
 #pytest
 #coding=utf-8
 #!/usr/bin/python
-# 掘金网站文章爬虫
+# IT网站文章爬虫
 # 作者：小鸡  flyphp@outlook.com
 
 import pymysql
@@ -15,7 +15,7 @@ import urllib
 
 
 # 连接数据库需要，IP，user，密码，库名
-db = pymysql.connect(host='localhost', user="root", passwd='www.l975', db='www_idealli_com')
+db = pymysql.connect(host='localhost', user="root", passwd='your passwd', db='www_idealli_com')
 
 if __name__ == '__main__':
     cursor = db.cursor()
