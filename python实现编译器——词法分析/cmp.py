@@ -94,9 +94,14 @@ def creat_table(in_words):
     name_list = []          # 变量
     out_word_list = []      # 输出字符串
     kuo_list = []           # 存储括号并判断是否完整匹配
+    char_flag = False
     for word in in_words:
         w = word['word']
         line = word['line']
+        # 判断是否为字符串
+        if char_flag == True:
+            out_word_list.append({'line':line, 'type':'chartable', 'word':w})
+            continue
         # 判断为关键字
         if w in k_list:
             key_word_table.append({'line':line, 'type':'keyword', 'word':w})
@@ -107,6 +112,12 @@ def creat_table(in_words):
             out_word_list.append({'line':line, 'type':'operator', 'word':w})
         # 判断为分隔符
         elif w in f_list:
+            # 是否为引号
+            # if w == "\"" or w == "'":
+            #     if char_flag == False:
+            #         char_flag = True
+            #     else:
+            #         char_flag = False
             # 检查括号匹配
             if w in kuo_cp.values() or w in kuo_cp.keys():
                 # 左括号入栈
