@@ -2,7 +2,7 @@
 # 编译原理——词法分析器
 # 刘金明——320160939811
 import re
-# 一些判断函数和字符分割函数放在function库中
+# 一些判断函数和字符分割函数放在同级文件function.py中
 from function import if_num, if_name, have_name, printf, get_word
 
 # 运算符表
@@ -29,6 +29,7 @@ class word_list():
         self.operator_list = []      # 运算符
         self.name_list = []          # 变量
         self.key_word_table = []     # 关键字
+        self.flag = True             # 源代码是否正确标识
         
         # get_word函数将源代码切割
         self.creat_table(get_word(filename))
@@ -64,6 +65,7 @@ class word_list():
                         kuo_list.pop()
                     else:
                         print("小金提醒：在第" + str(line) + "行的' " + w + " '无法匹配，无法通过编译，请检查代码正确性！")
+                        self.flag = False
                         return
                 self.separator_list.append({'line':line, 'type':'separator', 'word':w})
                 self.word_list.append({'line':line, 'type':'separator', 'word':w})
@@ -81,17 +83,25 @@ class word_list():
                         name_id += 1
                 else:
                     print("小金提醒：在第" + str(line) + "行的变量名' " + w + " '不可识别，无法通过编译，请检查代码正确性！")
+                    self.flag = False
                     return
         if kuo_list!=[]:
             print("小金提醒：在第" + str(kuo_list[0]['line']) + "行的' " + kuo_list[0]['kuo'] + " '无法匹配，无法通过编译，请检查代码正确性！")
+            self.flag = False
             return
  
 if __name__ == '__main__':
+
+    # 写了三个测试的c语言文件在同级目录
+    # 其中test.c是正常的代码
+    # error1.c和error2.c是错误的测试代码
+
     filename = input("请输入要编译的.c文件:")
     if filename == '':
         filename = 'test.c'
     w_list = word_list(filename)
-    print("\n输出字符串如下")
-    printf(w_list.word_list)
-    print("\n\n输出变量表如下\n")
-    printf(w_list.name_list)
+    if w_list.flag:
+        print("\n输出字符串如下")
+        printf(w_list.word_list)
+        print("\n\n输出变量表如下\n")
+        printf(w_list.name_list)
