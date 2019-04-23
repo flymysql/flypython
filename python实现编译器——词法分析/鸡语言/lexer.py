@@ -5,18 +5,14 @@ import re
 # 一些判断函数和字符分割函数放在同级文件function.py中
 import sys, os
 sys.path.append(os.pardir)  # 为了导入父目录的文件而进行的设定
-from lexer.function import if_num, if_name, have_name, printf, get_word
+from function import if_num, if_name, have_name, printf, get_word
 
 # 运算符表
 y_list = {"+","-","*","/","<","<=",">",">=","=","==","!=","^",",","&","&&","|","||","%","~","<<",">>","!"}
 # 分隔符表
 f_list = {";","(",")","[","]","{","}", ".",":","\"","#","\'","\\","?"}
 # 关键字表
-k_list = {
-    "auto", "break", "case", "char", "const", "continue","default", "do", "double", "else", "enum", "extern",
-    "float", "for", "goto", "if", "int", "long","register", "return", "short", "signed", "sizeof", "static",
-    "struct", "switch", "typedef", "union", "unsigned", "void","volatile", "while", "printf"
-}
+k_list = {"鸡", "咯咯哒", "if", "else"}
 # 括号配对判断
 kuo_cp = {'{':'}', '[':']', '(':')'}
 
@@ -100,7 +96,7 @@ if __name__ == '__main__':
 
     filename = input("请输入要编译的.c文件:")
     if filename == '':
-        filename = '../test/test.c'
+        filename = 'test.鸡'
     w_list = word_list(filename)
     if w_list.flag:
         print("\n输出字符串如下")
