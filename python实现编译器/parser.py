@@ -1,10 +1,12 @@
 """
 语法分析:使用递归的自上而下方式
-刘金明：16计一
+作者：刘金明
+博客：me.idealli.com
+Github：github.com/flymysql
 """
 import sys, os, re
 sys.path.append(os.pardir)
-from lexer import word_list
+from lexer import word_list,k_list
 
 """
 Expr      ->    Term ExprTail
@@ -21,13 +23,14 @@ Factor    ->    (Expr)
           |     num
 """
 grammars = {
-    "Program":["keyword M C Pro"],
+    "Program":["type M C Pro"],
     "C":["( cc )"],
     "cc":["null"],
     "Pro":["{ Pr }"],
     "Pr":["P ; Pr", "null"],
-    "P":["keyword L", "L","printf OUT"],
-    "L":["M = E", "M"],
+    "P":["type L", "L","printf OUT"],
+    "L":["M LM"],
+    "LM":["= E", "null"],
     "M":["name"],
     "E":["T ET"],
     "ET":["+ T ET", "- T ET", "null"],
@@ -38,8 +41,9 @@ grammars = {
     "OUT":["( \" TEXT \" , V )"],
     "V":["name VV", "null"],
     "VV":[", name VV", "null"],
-    "END_STATE": r"(null)|(number)|(name)|(keyword)|(operator)|(printf)|(separator)|(TEXT)|[+\-*/=;,\")({}]"
+    "END_STATE": r"(null)|(number)|(name)|(type)|(operator)|(printf)|(separator)|(TEXT)|[+\-*/=;,\")({}]"
 }
+
 
 # 运算符表
 operator = {"+","-","*","/","="}

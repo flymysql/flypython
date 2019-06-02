@@ -8,7 +8,7 @@ int main(){
     */
     int b;
     b = 1+ 2+3*7;
-    printf("%d%d",a,b);
+    // printf("%d%d",a,b);
     //a=a+b;
     /*
     多行注释测试

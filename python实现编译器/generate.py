@@ -1,8 +1,11 @@
 """
 语义分析:中间代码产生——四元式
-刘金明：16计一
+作者：刘金明
+博客：me.idealli.com
+Github：github.com/flymysql
 """
 from parser import Node,build_ast
+from LL import analysis
 import sys, os, re
 sys.path.append(os.pardir)
 from lexer import word_list
@@ -49,10 +52,10 @@ def view_astree(root, ft=None):
     """
     # 变量声明语句，两种情况（直接赋值，不赋值）
     if root.type == "L":
-        if len(root.child) == 1:
+        if len(root.child[1].child) == 1:
             mid_result.append(Mnode("=",0,0,view_astree(root.child[0])))
         else:
-            mid_result.append(Mnode("=",view_astree(root.child[2]),0,view_astree(root.child[0])))
+            mid_result.append(Mnode("=",view_astree(root.child[1]),0,view_astree(root.child[0])))
     # 右递归处理
     elif root.type == "ET" or root.type == "TT":
         if len(root.child) > 1:
@@ -97,7 +100,7 @@ if __name__ == "__main__":
     filename = 'test/test.c'
     w_list = word_list(filename)
     word_table = w_list.word_list
-    root = build_ast(word_table)
+    root = analysis(word_table)[1]
     view_astree(root)
     for r in mid_result:
         print(r)

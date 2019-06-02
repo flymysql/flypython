@@ -1,6 +1,10 @@
-# 环境：python3.6
-# 编译原理——词法分析器
-# 刘金明——320160939811
+"""
+环境：python3.6
+作者：刘金明
+博客：me.idealli.com
+Github：github.com/flymysql
+"""
+
 import re
 # 一些判断函数和字符分割函数放在同级文件function.py中
 import sys, os
@@ -13,10 +17,13 @@ y_list = {"+","-","*","/","<","<=",">",">=","=","==","!=","^",",","&","&&","|","
 f_list = {";","(",")","[","]","{","}", ".",":","\"","#","\'","\\","?"}
 # 关键字表
 k_list = {
-    "auto", "break", "case", "char", "const", "continue","default", "do", "double", "else", "enum", "extern",
-    "float", "for", "goto", "if", "int", "long","register", "return", "short", "signed", "sizeof", "static",
-    "struct", "switch", "typedef", "union", "unsigned", "void","volatile", "while", "printf"
+    "auto", "break", "case", "const", "continue","default", "do",  "else", "enum", "extern",
+  "for", "goto", "if", "register", "return", "short", "signed", "sizeof", "static",
+    "struct", "switch", "typedef", "union",  "volatile", "while", "printf"
 }
+
+Type = {"int","float","char","double","void","long","unsigned"}
+
 # 括号配对判断
 kuo_cp = {'{':'}', '[':']', '(':')'}
 
@@ -61,11 +68,15 @@ class word_list():
             # 判断为关键字
             if w in k_list:
                 self.key_word_table.append({'line':line, 'type':'keyword', 'word':w})
-                self.word_list.append({'line':line, 'type':'keyword', 'word':w})
+                self.word_list.append({'line':line, 'type':w, 'word':w})
+            # 判断为关键字
+            elif w in Type:
+                self.key_word_table.append({'line':line, 'type':'type', 'word':w})
+                self.word_list.append({'line':line, 'type':'type', 'word':w})
             # 判断为运算符
             elif w in y_list:
                 self.operator_list.append({'line':line, 'type':'operator', 'word':w})
-                self.word_list.append({'line':line, 'type':'operator', 'word':w})
+                self.word_list.append({'line':line, 'type':w, 'word':w})
             # 判断为分隔符
             elif w in f_list:
                 if w in kuo_cp.values() or w in kuo_cp.keys():
@@ -80,7 +91,7 @@ class word_list():
                         self.flag = False
                         return
                 self.separator_list.append({'line':line, 'type':'separator', 'word':w})
-                self.word_list.append({'line':line, 'type':'separator', 'word':w})
+                self.word_list.append({'line':line, 'type':w, 'word':w})
             # 其他字符处理
             else:
                 if if_num(w):
