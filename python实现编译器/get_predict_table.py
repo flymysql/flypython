@@ -12,30 +12,33 @@ grammars = {
     "Program":["type M C Pro"],
     "C":["( cc )"],
     "cc":["null"],
+
     "Pro":["{ Pr }"],
-    "Pr":["P ; Pr", "null"],
-    "P":["type L", "L","printf OUT"],
+    "Pr":["P Pr", "null"],
+    "P":["type L ;", "L ;", "printf OUT ;", "Pan"],
+
     "L":["M LM"],
     "LM":["= E", "null"],
     "M":["name"],
+
     "E":["T ET"],
     "ET":["+ T ET", "- T ET", "null"],
     "T":["F TT"],
     "TT":["* F TT", "/ F TT", "null"],
-    "F":["number", "BRA"],
+    "F":["number", "BRA", "M"],
     "BRA": ["( E )"],
-    "OUT":["( \" TEXT \" , V )"],
+
+    "OUT":["( V )"],
     "V":["name VV", "null"],
     "VV":[", name VV", "null"],
-}
 
-"""grammars = {
-    "E":["T E1"],
-    "E1":["+ T E1", "null"],
-    "T":["F T1"],
-    "T1":["* F T1", "null"],
-    "F":["( E )", "id"]
-}"""
+    "Pan":["Ptype P_block Pro"],
+    "Ptype":["if", "while"],
+    "P_block":["( Pbc )"],
+    "Pbc":["M PM"],
+    "PM":["Sop E", "null"],
+    "Sop":["<", ">", "= =", "! ="]
+}
 
 first_table = {}
 follow_table = {}
@@ -97,7 +100,7 @@ def find_first(key):
 """
 def find_follow():
     init_observer()
-    follow_table["E"] = ["#"]
+    follow_table["Program"] = ["#"]
     for k in grammars:
         for next_grammar in grammars[k]:
             next_k = next_grammar.split()

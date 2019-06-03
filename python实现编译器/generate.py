@@ -42,13 +42,16 @@ def view_astree(root, ft=None):
     global mid_result
     global tmp
     
-    """ 下面的代码参照该文法
-    "L":["M = E", "M"],
+    """ 下面的代码参照该文法，当前仅生成四则运算与赋值语句
+    "L":["M LM"],
+    "LM":["= E", "null"],
     "M":["name"],
     "E":["T ET"],
     "ET":["+ T ET", "- T ET", "null"],
     "T":["F TT"],
     "TT":["* F TT", "/ F TT", "null"],
+    "F":["number", "BRA"],
+    "BRA": ["( E )"],
     """
     # 变量声明语句，两种情况（直接赋值，不赋值）
     if root.type == "L":

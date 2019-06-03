@@ -8,8 +8,16 @@ int main(){
     */
     int b;
     b = 1+ 2+3*7;
-    // printf("%d%d",a,b);
-    //a=a+b;
+    // 暂时还没判断语句的四元式
+    if(a == b+1){
+        b = a;
+        a = a + 1;
+    }
+    while(a < b + 1){
+         a = a +1;
+     }
+    printf(a,b);
+    // 因为printf和控制语句的四元式还没写
     /*
     多行注释测试
     */

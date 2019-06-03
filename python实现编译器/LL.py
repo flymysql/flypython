@@ -89,7 +89,7 @@ def analysis(word_table, show=False):
                     stack.append(nl)
             # 状态 4 错误
             else:
-                print("error", stack)
+                print("error", stack, cur.type , word_table[index]['type'])
                 return [False]
 
 if __name__ == "__main__":
