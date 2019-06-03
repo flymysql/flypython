@@ -22,6 +22,8 @@ k_list = {
     "struct", "switch", "typedef", "union",  "volatile", "while", "printf"
 }
 
+Cmp = ["<", ">", "==", "!=", ">=", "<="]
+
 Type = {"int","float","char","double","void","long","unsigned"}
 
 # 括号配对判断
@@ -69,6 +71,8 @@ class word_list():
             if w in k_list:
                 self.key_word_table.append({'line':line, 'type':'keyword', 'word':w})
                 self.word_list.append({'line':line, 'type':w, 'word':w})
+            elif w in Cmp:
+                self.word_list.append({'line':line, 'type':"Cmp", 'word':w})
             # 判断为关键字
             elif w in Type:
                 self.key_word_table.append({'line':line, 'type':'type', 'word':w})

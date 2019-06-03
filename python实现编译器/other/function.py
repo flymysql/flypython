@@ -14,6 +14,8 @@ k_list = {
     "struct", "switch", "typedef", "union", "unsigned", "void","volatile", "while", "printf"
 }
 
+Cmp = ["<", ">", "==", "!=", "<=", ">="]
+
 # 正则表达式判断是否为数字
 def if_num(int_word):
     if re.match("^([0-9]{1,}[.][0-9]*)$",int_word) or re.match("^([0-9]{1,})$",int_word) == None:
@@ -69,6 +71,9 @@ def get_word(filename):
                 pass_block = True
                 break
             # 分析单词
+            if w in Cmp:
+                out_words.append({'word':w, 'line':line_num})
+                continue
             ws = w
             for a in w:
                 if a in f_list or a in y_list:

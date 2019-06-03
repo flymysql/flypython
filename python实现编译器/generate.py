@@ -107,5 +107,6 @@ if __name__ == "__main__":
     view_astree(root)
     for r in mid_result:
         print(r)
+    print("\n\t目前近支持四则运算与赋值运算的中间代码翻译，若有其他语句，可能翻译会有冲突\n\n")
     # tmp_code = generate(root)
     # print(tmp_code)

@@ -22,11 +22,11 @@ class Node:
         childs = list()
         for child in self.child:
             childs.append(child.__str__())
-        out = "({type}, {text})".format(type=self.type, text=self.text)
+        out = "<{type}, {text}>".format(type=self.type, text=self.text)
         for child in childs:
             if child:
                 for line in child.split("\n"):
-                        out = out + "\n\t" + line
+                    out = out + "\n     " + line
         return out
 
     def __repr__(self):

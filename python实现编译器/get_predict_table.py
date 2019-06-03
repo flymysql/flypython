@@ -36,8 +36,7 @@ grammars = {
     "Ptype":["if", "while"],
     "P_block":["( Pbc )"],
     "Pbc":["M PM"],
-    "PM":["Sop E", "null"],
-    "Sop":["<", ">", "= =", "! ="]
+    "PM":["Cmp E", "null"],
 }
 
 first_table = {}

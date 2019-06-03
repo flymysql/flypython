@@ -122,8 +122,9 @@ class Node:
         return self.__str__()
 
 if __name__ == "__main__":
-    filename = 'test/test.c'
+    filename = 'test/test2.c'
     w_list = word_list(filename)
     word_table = w_list.word_list
     build_ast(word_table)
     print(build_ast(word_table))
+    print("\n\n\t小鸡提示，这是写的第一个递归方式的语法分析！\n\t请运行　LL.py　执行非递归的预测表分析方法！\n\n")
